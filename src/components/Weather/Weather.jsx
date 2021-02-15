@@ -1,14 +1,14 @@
-function Weather() {
+function Weather(props) {
     return (
         <div className="container">
             <div className="cards">
-                <h1>London</h1>
+                <h1>{props.city}, {props.country }</h1>
                 <h5 className="py-4">
-                    <i className="wi wi-day-sunny display-1"></i>
+                    <i className={`wi ${props.weatherIcon} display-1`}></i>
                 </h5>
-                <h2 className="py-2">25&deg;</h2>
-                {minmaxTemp(15, 30)}
-                <h4 className="py-3">Rain</h4>
+                <h2 className="py-2">{props.temp_celsius}&deg;</h2>
+                {minmaxTemp(props.temp_min, props.temp_max)}
+                <h4 className="py-3">{props.description}</h4>
             </div>
         </div>
     );
