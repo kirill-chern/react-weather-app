@@ -13,7 +13,6 @@ class App extends React.Component {
     this.state = {
       city: undefined,
       icon: undefined,
-      main: undefined,
       celsius: undefined,
       temp_max: undefined,
       temp_min: undefined,
@@ -32,24 +31,47 @@ class App extends React.Component {
   }
 
   getWeatherIcon(weatherIcons, id) {
-    switch(true) {
+    switch (true) {
       case id >= 200 && id <= 232:
-        return weatherIcons.Thunderstorm;
+        this.setState({
+          icon: weatherIcons.Thunderstorm,
+        });
+        break;
       case id >= 300 && id <= 321:
-        return weatherIcons.Drizzle;
+        this.setState({
+          icon: weatherIcons.Drizzle,
+        });
+        break;
       case id >= 500 && id <= 531:
-        return weatherIcons.Rain;
+        this.setState({
+          icon: weatherIcons.Rain,
+        });        
+        break;
       case id >= 600 && id <= 622:
-        return weatherIcons.Snow;
+        this.setState({
+          icon: weatherIcons.Snow,
+        });        
+        break;
       case id >= 701 && id <= 781:
-        return weatherIcons.Atmosphere;
+        this.setState({
+          icon: weatherIcons.Atmosphere,
+        });        
+        break;
       case id == 800:
-        return weatherIcons.Clear;
+        this.setState({
+          icon: weatherIcons.Clear,
+        });        
+        break;
       case id >= 801 && id <= 804:
-        return weatherIcons.Clouds;   
+        this.setState({
+          icon: weatherIcons.Clouds,
+        });        
+        break;
       default:
-        return weatherIcons.Clear;                             
-    }
+        this.setState({
+          icon: weatherIcons.Clear,
+        });    
+      }
   }
 
   getWeather = async (e) => {
@@ -58,7 +80,8 @@ class App extends React.Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
 
-    if(city && country) {
+    try{
+      if (city && country) {
       const api_call = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${weather_key}`
       );
@@ -69,19 +92,26 @@ class App extends React.Component {
         temp_max: this.calcCelsius(response.main.temp_max),
         temp_min: this.calcCelsius(response.main.temp_min),
         description: response.weather[0].description,
-        icon: this.getWeatherIcon(this.weatherIcon, response.weather[0].id),
+        error: false
       });
-    } else {
-      this.setState({error:true});
+      this.getWeatherIcon(
+        this.weatherIcon,
+        response.weather[0].id
+      );
+      } else {
+        this.setState({ error: true });
+      }
+    } catch(e) {
+      this.setState({ error: true });
     }
   };
   calcCelsius(temp) {
-    return Math.floor(temp-273.15);
+    return Math.floor(temp - 273.15);
   }
   render() {
     return (
       <div className="App">
-        <Form loadWeather={this.getWeather} error={this.state.error}/>
+        <Form loadWeather={this.getWeather} error={this.state.error} />
         <Weather
           description={this.state.description}
           city={this.state.city}

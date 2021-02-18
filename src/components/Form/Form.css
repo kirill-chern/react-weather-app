@@ -16,3 +16,7 @@ form input:focus {
     border-bottom: 2px solid red;
     outline: 0;
 }
+
+form input::-webkit-input-placeholder {
+    color: rgb(190, 190, 190)!important;
+}

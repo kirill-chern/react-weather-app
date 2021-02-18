@@ -6,7 +6,7 @@ function Form(props) {
     <div>{props.error ? error() : null}</div>
     <form onSubmit={props.loadWeather}>
         <div className="row">
-            <div className="col-md-3 offset-md-2">
+            <div className="col-md-3 offset-md-2 py-3">
             <input
                 type="text"
                 className="form__item"
@@ -15,7 +15,7 @@ function Form(props) {
                 placeholder="city"
             />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 py-3">
             <input
                 type="text"
                 className="form__item"
@@ -24,7 +24,7 @@ function Form(props) {
                 placeholder="country"
             />
             </div>
-            <div className="col-md-3 mt-md-0 text-md-left">
+            <div className="col-md-3 mt-md-0 py-4 text-md-left">
             <button className="btn btn-success">Get weather</button>
             </div>
         </div>
@@ -36,7 +36,7 @@ function Form(props) {
 function error() {
     return (
         <div className="alert alert-danger mx-5" role="alert">
-            Please enter city and country
+            Please enter valid city and country
         </div>
     );
 }
