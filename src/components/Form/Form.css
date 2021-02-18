@@ -10,6 +10,7 @@ form input[name="country"] {
     border-bottom: 2px solid whitesmoke;
     border-radius: 0;
     transition: 0.5s;
+    font-size: 25px;
 }
 
 form input:focus {

@@ -8,7 +8,7 @@ function Weather(props) {
                 </h5>
                 { props.temp_celsius ? <h2 className="py-2">{props.temp_celsius}&deg;</h2> : null }
                 {minmaxTemp(props.temp_min, props.temp_max)}
-                <h4 className="py-3">{props.description}</h4>
+                <h4 className="py-3">{props.description.toUpperCase()}</h4>
             </div>
         </div>
     );

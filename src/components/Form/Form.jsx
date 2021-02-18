@@ -12,7 +12,7 @@ function Form(props) {
                 className="form__item"
                 name="city"
                 autoComplete="off"
-                placeholder="city"
+                placeholder="Сity"
             />
             </div>
             <div className="col-md-3 py-3">
@@ -21,7 +21,7 @@ function Form(props) {
                 className="form__item"
                 name="country"
                 autoComplete="off"
-                placeholder="country"
+                placeholder="Сountry"
             />
             </div>
             <div className="col-md-3 mt-md-0 py-4 text-md-left">
